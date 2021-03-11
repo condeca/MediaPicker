@@ -12,9 +12,11 @@
         <param name="android-package" value="com.dmc.mediaPickerPlugin.MediaPicker"/>
       </feature>
     </config-file>
-    <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-      <application android:requestLegacyExternalStorage="true" />
-    </edit-config>
+    <config-file target="AndroidManifest.xml" parent="application">
+         <provider android:authorities="${applicationId}.provider" android:exported="false" android:usesCleartextTraffic="true" android:grantUriPermissions="true" android:name="android.support.v4.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths" />
+        </provider>
+    </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"/>
     <config-file parent="/manifest" target="AndroidManifest.xml">
       <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
